@@ -1,4 +1,5 @@
 # Starter pipeline
+
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
@@ -12,6 +13,13 @@ pool:
 steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
+- task: rapid7-insightappsec@1
+  inputs:
+    apiConnection: 'Jamie_Mego_customer_appsec_conncetion'
+    application: 'bfe2dc7c-d702-456c-914e-4485fd036df8'
+    scanConfig: 'Hackazon Attack Scan - Unauthenticated'
+    generateFindingsReport: true
+    publishPipelineArtifacts: true
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
